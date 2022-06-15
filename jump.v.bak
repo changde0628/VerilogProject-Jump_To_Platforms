@@ -1,0 +1,45 @@
+module jump(clk, rst, pb, min1, min0, sec1, sec0, msec1, msec0 );
+	input clk, rst,start;
+
+	output reg [6:0] min1;
+	output reg [6:0] min0;
+	output reg [6:0] sec1;
+	output reg [6:0] sec0;
+	output reg [6:0] msec1;
+	output reg [6:0] msec0;
+	wire [3:0] smin1,smin0,ssec1,ssec0,smsec1,smsec0;
+	reg [6:0] min, sec, msec;
+	
+	reg clk1;
+	reg [22:0] counter;
+	reg endgame;
+	
+	//delay clock
+	always@(posedge clk or negedge rst)begin
+		if(~rst)begin
+			counter <= 0;
+			clk1 = 0;
+		end
+		else if(counter==50000)begin
+			counter <=0;
+			clk1 = ~clk1;
+		end
+		else 
+			counter <= counter + 1;
+	end
+	
+	
+	always@(posedge clk1 or negedge rst)begin
+		if(~rst)
+			start = 0;
+		else if(pb==0)
+			stop = ~stop;
+		else 
+			stop = stop;
+	end
+	
+	
+	always@(posedge clk1 or negedge rst)begin
+		
+	end
+endmodule
