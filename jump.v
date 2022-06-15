@@ -27,13 +27,13 @@ module jump(l_button,r_button, clk, rst,led0,led1,led2,led3,led4,led5,level);
 			clk1 = 0;
 			clk2 = 0;
 			level = 10'b0;
-			levelfreq = 5000000;
+			levelfreq = 4000000;
 		end
 		else if(lose!=1)begin
 			if(score%20==0)begin
 				level = level<<1;
 				level = level+1;
-				levelfreq = levelfreq-500000;
+				levelfreq = levelfreq-300000;
 				score= score + 1;
 			end		
 			else if(count2>=5000000)begin
